@@ -6,9 +6,9 @@ const { DatabaseSync } = require('node:sqlite')
 const getDatabasePath = () => {
     const isDev = !app.isPackaged;
 
-    if (isDev) return path.join(process.cwd(), 'dev-data', 'dictionary.db')
+    if (isDev) return path.resolve(process.cwd(), 'dev-data', 'dictionary.db')
 
-    return path.join( app.getPath('userData'), 'dictionary.db' )
+    return path.resolve( app.getPath('userData'), 'dictionary.db' )
 }
 
 
@@ -28,6 +28,7 @@ const schema = fs.readFileSync(
 )
 
 db.exec(schema);
+
 
 
 module.exports = db;
