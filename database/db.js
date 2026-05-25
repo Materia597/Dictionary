@@ -30,5 +30,4 @@ const schema = fs.readFileSync(
 db.exec(schema);
 
 
-
 module.exports = db;
