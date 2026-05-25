@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color definitions, Spacing sizes */
+
+
+    --ff: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+
+body {
+    font-family: var(--ff);
+}
+
+button {
+    font-family: var(--ff);
+}

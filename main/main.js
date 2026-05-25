@@ -1,9 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+require('../database/db')
 
 
-require('./database/db')
-
+const homePath = '../renderer/pages/home/home.html'
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -14,7 +14,7 @@ const createWindow = () => {
         }
     })
 
-    win.loadFile('index.html')
+    win.loadFile( path.join(__dirname, homePath) )
 }
 
 app.whenReady().then(() => {
