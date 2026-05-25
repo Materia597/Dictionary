@@ -1,3 +1,4 @@
+require('electron-reloader')(module);
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
 require('../database/db')

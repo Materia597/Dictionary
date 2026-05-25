@@ -3,17 +3,87 @@
 }
 
 :root {
+
+    font-size: 20px;
+
     /* Color definitions, Spacing sizes */
 
+    --margin-xxs: 0.25rem;
+    --margin-xs: 0.5rem;
+    --margin-s: 0.75rem;
+    --margin-m: 1.00rem;
+    --margin-l: 1.25rem;
+    --margin-xl: 1.5rem;
+    --margin-xxl: 2.5rem;
 
-    --ff: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    --ff: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    --bg-dark: oklch(0.1 0.015 264);
+    --bg: oklch(0.2 0.015 264);
+    --bg-light: oklch(0.3 0.015 264);
+    --text: oklch(0.96 0.03 264);
+    --text-muted: oklch(0.76 0.03 264);
+
+    --primary: oklch(0.76 0.1 264);
+    --secondary: oklch(0.76 0.1 84);
+    --danger: oklch(0.7 0.05 30);
+    --warning: oklch(0.7 0.05 100);
+    --success: oklch(0.7 0.05 160);
+    --info: oklch(0.7 0.05 260);   
+    
+    --highlight: oklch(0.5 0.03 264);
+    --border: oklch(0.4 0.03 264);
+    --border-muted: oklch(0.3 0.03 264);
+    --gradient: linear-gradient(0deg, var(--bg) 95%, var(var(--bg-light)));
+    --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+
+    --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-dark: oklch(0.92 0.015 264);
+        --bg: oklch(0.96 0.015 264);
+        --bg-light: oklch(1 0.015 264);
+        --text: oklch(0.15 0.03 264);
+        --text-muted: oklch(0.4 0.03 264);
+        
+        --primary: oklch(0.76 0.1 264);
+        --secondary: oklch(0.76 0.1 84);
+        --danger: oklch(0.7 0.05 30);
+        --warning: oklch(0.7 0.05 100);
+        --success: oklch(0.7 0.05 160);
+        --info: oklch(0.7 0.05 260);
+        
+        --highlight: oklch(1 0.03 264);
+        --border: oklch(0.6 0.03 264);
+        --border-muted: oklch(0.7 0.03 264);
+        --gradient: linear-gradient(0deg, var(--bg) 95%, var(var(--bg-light)));
+        --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+    }
 }
 
 
 body {
     font-family: var(--ff);
+    background: var(--bg-dark);
+    color: var(--text-muted);
 }
 
-button {
+button, input {
     font-family: var(--ff);
+    background: var(--bg);
+    color: var(--text-muted);
+}
+
+input {
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+}
+
+
+.icon {
+    width: var(--margin-l);
+    height: var(--margin-l);
+    cursor: pointer;
 }
