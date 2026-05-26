@@ -21,8 +21,8 @@ contextBridge.exposeInMainWorld('entries', {
     deleteEntry: (term, definition) => ipcRenderer.invoke('delete-entry', term, definition),
     editEntryFromId: (id, term, definition) => ipcRenderer.invoke('edit-entry-from-id', id, term, definition),
     editEntryFromFields: (oldTerm, oldDefinition, newTerm, newDefinition) => ipcRenderer.invoke(oldTerm, oldDefinition, newTerm, newDefinition),
+    recentEntries: () => ipcRenderer.invoke('recent-entries'),
 
-    addTagToEntry: () => ipcRenderer.invoke('add-tag-to-entry'),
-    removeTagFromEntry: () => ipcRenderer.invoke('remove-tag-from-entry'),
-    editEntryTags: () => ipcRenderer.invoke('edit-entry-tags')
+    addTagToEntry: (entryId, tagId) => ipcRenderer.invoke('add-tag-to-entry', entryId, tagId),
+    removeTagFromEntry: (entryId, tagId) => ipcRenderer.invoke('remove-tag-from-entry', entryId, tagId),
 })

@@ -1,7 +1,23 @@
 
 const entryRepo = require('../../database/repositories/entryRepository')
+const relationshipRepo = require('../../database/repositories/relationshipRepository')
 
-// const entryTagsRepo = ...
+/**
+ * Puts the information from a record and its tags into a concise
+ * object.
+ * 
+ * @param {Record<string, SQLOutputValues>|undefined} entryRecord 
+ * @param {Record<string, SQLOutputValues>[]} tags 
+ * @returns 
+ */
+function transformEntry(entryRecord, tags) {
+    return {
+        id: entryRecord?.id,
+        term: entryRecord?.term,
+        definition: entryRecord?.definition,
+        tags: tags
+    }
+}
 
 
 /**
@@ -11,7 +27,10 @@ const entryRepo = require('../../database/repositories/entryRepository')
  * @returns 
  */
 const getEntry = (term, definition) => {
-    return entryRepo.getEntry(term, definition)
+    const entryInfo = entryRepo.getEntry(term, definition);
+    const entryTags = relationshipRepo.getTagsForEntry(entryInfo.id);
+
+    return transformEntry(entryInfo, entryTags)
 }
 
 /**
@@ -40,7 +59,15 @@ const deleteEntryById = (id) => {
  * @returns 
  */
 const deleteEntry = (term, definition) => {
-    return entryRepo.deleteEntry(term, definition)
+    const entryInfo = entryRepo.getEntry(term, definition)
+
+    try {
+        entryRepo.deleteEntryById(entryInfo.id)
+        relationshipRepo.deleteRelationshipsWithEntries(entryInfo.id)
+        return true
+    } catch (error) {
+        return false
+    }
 }
 
 
@@ -68,16 +95,27 @@ const editEntryFromFields = (oldTerm, oldDefinition, newTerm, newDefinition) => 
 }
 
 
-const addTagToEntry = () => {
-    throw new Error("Not Implemented");
+const addTagToEntry = (entryId, tagId) => {
+    return relationshipRepo.addRelationship(entryId, tagId)
 }
 
-const removeTagFromEntry = () => {
-    throw new Error("Not Implemented");
+const removeTagFromEntry = (entryId, tagId) => {
+    return relationshipRepo.deleteRelationship(entryId, tagId);
 }
 
-const editEntryTags = () => {
-    throw new Error("Not Implemented");
+
+const recentEntries = () => {
+    const recent = entryRepo.recentEntries()
+
+    let formattedEntries = []
+    
+    recent.forEach(entry => {
+        try {
+            formattedEntries.push( transformEntry( entry, relationshipRepo.getTagsForEntry(entry.id) ) )
+        } catch (error) {}
+    })
+
+    return formattedEntries
 }
 
 
@@ -87,8 +125,8 @@ module.exports.deleteEntryById = deleteEntryById;
 module.exports.deleteEntry = deleteEntry;
 module.exports.editEntryFromId = editEntryFromId;
 module.exports.editEntryFromFields = editEntryFromFields;
+module.exports.recentEntries = recentEntries;
 
 // TODO: add the following functionality when entry_tags has been sorted
 module.exports.addTagToEntry = addTagToEntry
 module.exports.removeTagFromEntry = removeTagFromEntry
-module.exports.editEntryTags = editEntryTags

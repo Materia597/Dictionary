@@ -11,6 +11,8 @@ const deleteEntryFromValuesStatement = db.prepare(`DELETE FROM entries WHERE ter
 const editEntryFromIdStatement = db.prepare(`UPDATE entries SET term = :term, definition = :definition WHERE id = :id`)
 const editEntryFromValuesStatement = db.prepare(`UPDATE entries SET term = :newTerm, definition = :newDefinition WHERE term = :oldTerm AND definition = :oldDefinition`)
 
+const recentEntriesStatement = db.prepare(`SELECT * FROM entries ORDER BY id DESC LIMIT 10`)
+
 /**
  * 
  * @param {string} term 
@@ -103,6 +105,10 @@ const editEntryFromFields = (oldTerm, oldDefinition, newTerm, newDefinition) => 
 }
 
 
+const recentEntries = () => {
+    return recentEntriesStatement.all()
+}
+
 module.exports.entryExists = entryExists;
 module.exports.getEntry = getEntry;
 module.exports.createEntry = createEntry;
@@ -110,3 +116,4 @@ module.exports.deleteEntryById = deleteEntryById;
 module.exports.deleteEntry = deleteEntry;
 module.exports.editEntryFromId = editEntryFromId;
 module.exports.editEntryFromFields = editEntryFromFields;
+module.exports.recentEntries = recentEntries;

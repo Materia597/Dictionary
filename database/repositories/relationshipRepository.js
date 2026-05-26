@@ -21,8 +21,7 @@ const getEntriesWithTagStatement = db.prepare(`
         ON tags.id = entry_tags.tag_id
     WHERE tags.name = :tagName
     ORDER BY entries.id DESC
-    OFFSET :offset
-    LIMIT :limit
+    LIMIT :limit OFFSET :offset
 `)
 
 const deleteEntryTagRelationshipStatement = db.prepare(`
@@ -76,7 +75,7 @@ const getTagsForEntry = (entryId) => {
 const getEntriesWithTag = (tagName, offset = 0, limit = 25) => {
     const lowerTag = tagName.toLowerCase().trim()
 
-    return getEntriesWithTagStatement.all({tagName: lowerTag})
+    return getEntriesWithTagStatement.all({tagName: lowerTag, offset: offset, limit: limit})
 }
 
 

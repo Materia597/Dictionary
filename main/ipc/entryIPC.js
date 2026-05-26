@@ -26,15 +26,14 @@ ipcMain.handle('edit-entry-from-fields', (_, oldTerm, oldDefinition, newTerm, ne
     return entryServices.editEntryFromFields(oldTerm, oldDefinition, newTerm, newDefinition)
 })
 
-
-ipcMain.handle('add-tag-to-entry', (_) => {
-    return entryServices.addTagToEntry()
+ipcMain.handle('add-tag-to-entry', (_, entryId, tagId) => {
+    return entryServices.addTagToEntry(entryId, tagId)
 })
 
-ipcMain.handle('remove-tag-from-entry', (_) => {
-    return entryServices.removeTagFromEntry()
+ipcMain.handle('remove-tag-from-entry', (_, entryId, tagId) => {
+    return entryServices.removeTagFromEntry(entryId, tagId)
 })
 
-ipcMain.handle('edit-entry-tags', (_) => {
-    return entryServices.editEntryTags()
+ipcMain.handle('recent-entries', () => {
+    return entryServices.recentEntries();
 })
