@@ -6,3 +6,10 @@ contextBridge.exposeInMainWorld('versions', {
     electron: () => process.versions.electron,
     ping: () => ipcRenderer.invoke('ping')
 })
+
+contextBridge.exposeInMainWorld('tags', {
+    createTag: (tagName) => ipcRenderer.invoke('create-tag', tagName),
+    getTag: (tagName) => ipcRenderer.invoke('get-tag', tagName),
+    deleteTag: (tagName) => ipcRenderer.invoke('delete-tag', tagName),
+    recentTags: () => ipcRenderer.invoke('recent-tags')
+})

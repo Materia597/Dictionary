@@ -1,7 +1,12 @@
-require('electron-reloader')(module);
+// require('electron-reloader')(module);
+
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+
+
 require('../database/db')
+
+require('./ipc/tagIPC')
 
 
 const homePath = '../renderer/pages/home/home.html'
