@@ -7,6 +7,7 @@ const path = require('node:path')
 require('../database/db')
 
 require('./ipc/tagIPC')
+require('./ipc/entryIPC')
 
 
 const homePath = '../renderer/pages/home/home.html'

@@ -13,3 +13,16 @@ contextBridge.exposeInMainWorld('tags', {
     deleteTag: (tagName) => ipcRenderer.invoke('delete-tag', tagName),
     recentTags: () => ipcRenderer.invoke('recent-tags')
 })
+
+contextBridge.exposeInMainWorld('entries', {
+    getEntry: (term, definition) => ipcRenderer.invoke('get-entry', term, definition),
+    createEntry: (term, definition) => ipcRenderer.invoke('create-entry', term, definition),
+    deleteEntryById: (id) => ipcRenderer.invoke('delete-entry-by-id', id),
+    deleteEntry: (term, definition) => ipcRenderer.invoke('delete-entry', term, definition),
+    editEntryFromId: (id, term, definition) => ipcRenderer.invoke('edit-entry-from-id', id, term, definition),
+    editEntryFromFields: (oldTerm, oldDefinition, newTerm, newDefinition) => ipcRenderer.invoke(oldTerm, oldDefinition, newTerm, newDefinition),
+
+    addTagToEntry: () => ipcRenderer.invoke('add-tag-to-entry'),
+    removeTagFromEntry: () => ipcRenderer.invoke('remove-tag-from-entry'),
+    editEntryTags: () => ipcRenderer.invoke('edit-entry-tags')
+})

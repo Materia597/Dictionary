@@ -18,9 +18,6 @@ const recentTags = () => {
     return tagRepo.recentTags();
 }
 
-
-
-
 module.exports.createTag = createTag;
 module.exports.getTag = getTag;
 module.exports.deleteTag = deleteTag;
