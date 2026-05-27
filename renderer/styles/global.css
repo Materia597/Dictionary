@@ -16,7 +16,7 @@
     --margin-xl: 1.5rem;
     --margin-xxl: 2.5rem;
 
-    --ff: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     --bg-dark: oklch(0.1 0.015 264);
     --bg: oklch(0.2 0.015 264);
@@ -34,10 +34,10 @@
     --highlight: oklch(0.5 0.03 264);
     --border: oklch(0.4 0.03 264);
     --border-muted: oklch(0.3 0.03 264);
-    --gradient: linear-gradient(0deg, var(--bg) 95%, var(var(--bg-light)));
+    --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
     --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
 
-    --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+    --shadow: 0px 2px 2px hsla(0, 0%, 100%, 0.07), 0px 4px 4px hsla(0, 0%, 100%, 0.15);
 }
 
 @media (prefers-color-scheme: light) {
