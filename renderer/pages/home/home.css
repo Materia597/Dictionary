@@ -1,3 +1,67 @@
-nav {
-    transform-origin: right;
+
+#recent-definitions-preview {
+    padding: var(--margin-s) 0;
+    margin-top: var(--margin-l);
+    margin-left: var(--margin-s);
+    margin-right: var(--margin-s);
+    display: flex;
+    flex-direction: column;
+}
+
+.dict-entry-preview {
+    background: var(--gradient);
+    color: var(--text);
+    padding: var(--margin-xxs) var(--margin-m);
+    border-radius: var(--margin-m);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: background 0.25s;
+}
+
+.dict-entry-preview:hover {
+    background: var(--gradient-hover)
+}
+
+.term-heading {
+    display: inline-block;
+    font-size: var(--margin-l);
+    margin-bottom: var(--margin-xxs);
+    margin-top: var(--margin-xs);
+    padding-right: var(--margin-xs);
+    cursor: pointer;
+    transition: text-decoration 0.25s;
+}
+
+.term-heading:hover {
+    text-decoration: underline;
+}
+
+.definition-tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    gap: var(--margin-xs);
+}
+
+.def-tag {
+    font-size: var(--margin-xs);
+    color: var(--text-muted);
+    background: var(--bg-light);
+    padding: var(--margin-xxs) var(--margin-xs);
+    border-radius: var(--margin-s);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+}
+
+.def-tag:hover {
+    background: var(--primary);
+    color: var(--bg);
+}
+
+.definition-preview {
+    font-size: var(--margin-s);
+    margin-bottom: var(--margin-m);
 }

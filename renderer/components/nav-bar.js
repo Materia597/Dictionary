@@ -9,10 +9,11 @@ class NavBar extends HTMLElement {
                 nav {
                     width:100%;
                     box-sizing: border-box;
+                    font-family: var(--ff);
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-                    background: var(--bg);
+                    background: var(--gradient-hover);
                     border-radius: var(--margin-xl);
                     padding: var(--margin-xs) var(--margin-xs);
                     gap: var(--margin-l);
@@ -44,6 +45,14 @@ class NavBar extends HTMLElement {
                     padding: 0;
                     font-size: var(--margin-m);
                     font-weight: bold;
+                    color: var(--text);
+                    cursor: pointer;
+                    transition: color 0.25s, text-decoration 0.25s;
+                }
+
+                nav p:hover {
+                    color: var(--primary);
+                    text-decoration: underline;
                 }
 
                 .search {
@@ -52,7 +61,7 @@ class NavBar extends HTMLElement {
                     align-items: center;
                     padding: var(--margin-xs);
                     border-radius: var(--margin-xl);
-                    background: var(--bg-light);
+                    background: var(--bg);
                     border: 1px solid var(--border);
                 }
 
@@ -61,6 +70,8 @@ class NavBar extends HTMLElement {
                     border: none;
                     color: var(--text);
                     margin-left: var(--margin-xs);
+                    font-family: var(--ff);
+                    font-size: var(--margin-s);
                     outline: none;
                     flex: 1;
                 }
@@ -79,7 +90,7 @@ class NavBar extends HTMLElement {
                     transition: transform 0.25s;
                 }
 
-                .settings-icon[data-selected="true"] {
+                .settings-icon.selected {
                     transform: rotate(60deg);
                 }
 
@@ -107,9 +118,13 @@ class NavBar extends HTMLElement {
 
     connectedCallback() {
         const searchInput = this.shadowRoot.querySelector('.search-input')
+        const settingsIcon = this.shadowRoot.querySelector('.settings-icon')
+
+        settingsIcon.addEventListener('click', () => {
+            settingsIcon.classList.toggle('selected')
+        })
 
         searchInput.addEventListener('keydown', (e) => {
-            e.preventDefault()
 
             if (e.key !== 'Enter') return;
 
