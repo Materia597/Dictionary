@@ -76,6 +76,10 @@ class NavBar extends HTMLElement {
                     flex: 1;
                 }
 
+                .search-input::-webkit-search-cancel-button {
+                    cursor: pointer;
+                }
+
                 .search-input::placeholder,
                 .search-icon {
                     color: var(--text-muted);
@@ -84,14 +88,6 @@ class NavBar extends HTMLElement {
                 .search-icon {
                     width: var(--margin-m);
                     height: var(--margin-m);
-                }
-
-                .settings-icon {
-                    transition: transform 0.25s;
-                }
-
-                .settings-icon.selected {
-                    transform: rotate(60deg);
                 }
 
                 .icon {
@@ -110,7 +106,7 @@ class NavBar extends HTMLElement {
                     </div>
                 </section>
                 <section class="nav-right">
-                    <img src="../../assets/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="settings" class="icon settings-icon">
+                    <img src="../../assets/addLarge.svg" alt="add" class="icon add-icon">
                 </section>
             </nav>
         `
@@ -118,11 +114,6 @@ class NavBar extends HTMLElement {
 
     connectedCallback() {
         const searchInput = this.shadowRoot.querySelector('.search-input')
-        const settingsIcon = this.shadowRoot.querySelector('.settings-icon')
-
-        settingsIcon.addEventListener('click', () => {
-            settingsIcon.classList.toggle('selected')
-        })
 
         searchInput.addEventListener('keydown', (e) => {
 

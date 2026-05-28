@@ -1,11 +1,31 @@
 
 #recent-definitions-preview {
+    min-width: 480px;
     padding: var(--margin-s) 0;
     margin-top: var(--margin-l);
     margin-left: var(--margin-s);
     margin-right: var(--margin-s);
     display: flex;
     flex-direction: column;
+    gap: var(--margin-l);
+}
+
+@media (width >= 900px) {
+    #recent-definitions-preview {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--margin-l);
+        grid-auto-rows: 1fr;
+    }
+}
+
+@media (width >= 1400px) {
+    #recent-definitions-preview {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--margin-l);
+        grid-auto-rows: 1fr;
+    }
 }
 
 .dict-entry-preview {
@@ -64,4 +84,8 @@
 .definition-preview {
     font-size: var(--margin-s);
     margin-bottom: var(--margin-m);
+}
+
+input::-webkit-search-cancel-button {
+    background-image: url("../../assets/close.svg")
 }
