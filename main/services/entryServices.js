@@ -34,13 +34,31 @@ const getEntry = (term, definition) => {
 }
 
 /**
+ * Attempts to insert a new entry with the provided row and definition.
+ * If an entry with BOTH term and definition already exists, then it
+ * will not be inserted and the error field will be set for returning.
  * 
  * @param {string} term 
  * @param {string} definition 
- * @returns 
+ * @returns An object containing the id if insertion was a success, and
+ * an error message if it was not a success.
  */
 const createEntry = (term, definition) => {
-    return entryRepo.createEntry(term, definition)
+
+    try {
+        const result = entryRepo.createEntry(term, definition);
+        return {
+            id: result.lastInsertRowid,
+            error: null
+        }
+    } catch (err) {
+        return {
+            id: null,
+            error: 'Duplication error'
+        }        
+    }
+
+    // return entryRepo.createEntry(term, definition)
 }
 
 /**

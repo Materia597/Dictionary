@@ -1,0 +1,95 @@
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#new-definition {
+    align-self: center;
+    width: 100%;
+    max-width: 900px;
+    border-radius: var(--margin-s);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: var(--margin-s);
+    background: var(--bg);
+    margin: var(--margin-m) 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px green solid; */
+    width: 100%;
+    margin: var(--margin-xxs) 0;
+}
+
+#entry-tags {
+    flex-direction: row;
+}
+
+#new-definition input,
+#new-definition textarea {
+    background: var(--bg-dark);
+    font-family: var(--ff);
+    color: var(--text-muted);
+    border: 2px solid var(--border);
+    font-size: var(--margin-s);
+    font-weight: normal;
+    padding: var(--margin-xxs);
+    border-radius: var(--margin-xs);
+}
+
+#new-definition input:focus,
+#new-definition textarea:focus {
+    outline: 1px solid var(--secondary);
+}
+
+#new-definition input {
+    font-size: var(--margin-m);
+}
+
+#new-definition textarea {
+    resize: none;
+    overflow-y: scroll;
+}
+
+#new-definition textarea::-webkit-scrollbar {
+    width: 0;
+}
+
+#new-definition label {
+    color: var(--text);
+    font-size: var(--margin-l);
+    margin-bottom: var(--margin-xxs);
+}
+
+#entry-content-area {
+    margin-top: var(--margin-m);
+}
+
+.form-bottom {
+    margin-top: var(--margin-m);
+    align-self: end;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: end;
+}
+
+.form-bottom button {
+    font-size: var(--margin-s);
+    border: none;
+    padding: var(--margin-xs) var(--margin-xs);
+    border-radius: var(--margin-xs);
+    cursor: pointer;
+    background: var(--success);
+    color: var(--text);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    line-height: var(--margin-s);
+}
