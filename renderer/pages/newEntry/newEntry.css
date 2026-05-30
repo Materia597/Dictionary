@@ -16,6 +16,8 @@
     padding: var(--margin-s);
     background: var(--bg);
     margin: var(--margin-m) 0;
+
+    --ff-alt: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .form-group {
@@ -33,7 +35,7 @@
 #new-definition input,
 #new-definition textarea {
     background: var(--bg-dark);
-    font-family: var(--ff);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: var(--text-muted);
     border: 2px solid var(--border);
     font-size: var(--margin-s);
@@ -45,6 +47,12 @@
 #new-definition input:focus,
 #new-definition textarea:focus {
     outline: 1px solid var(--secondary);
+    outline: none;
+}
+
+#new-definition input.form-error,
+#new-definition textarea.form-error {
+    border: 2px solid var(--danger);
 }
 
 #new-definition input {
@@ -56,6 +64,25 @@
     overflow-y: scroll;
 }
 
+.form-group p.error-text {
+    font-size: var(--margin-s);
+    margin-top: var(--margin-xxs);
+    margin-bottom: var(--margin-xs);
+    color: var(--danger);
+    font-family: var(--ff-alt);
+    display: block;
+}
+
+
+.form-group p.error-text.no-error {
+    display: none;
+}
+
+.form-bottom p.error-text.no-error {
+    display: block;
+    visibility: hidden;
+}
+
 #new-definition textarea::-webkit-scrollbar {
     width: 0;
 }
@@ -64,6 +91,7 @@
     color: var(--text);
     font-size: var(--margin-l);
     margin-bottom: var(--margin-xxs);
+    font-weight: bold;
 }
 
 #entry-content-area {
@@ -78,7 +106,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 .form-bottom button {

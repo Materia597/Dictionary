@@ -35,6 +35,7 @@
             <div class="form-group">
                 <label for="entry-term">Term</label>
                 <input type="text" id="entry-term" name="term" required>
+                <p class="error-text no-error">Term cannot be empty.</p>
             </div>
     
             <div class="form-group" id="entry-tags">
@@ -45,9 +46,11 @@
             <div class="form-group" id="entry-content-area">
                 <label for="entry-content">Definition</label>
                 <textarea id="entry-content" name="definition" rows="5" required></textarea>
+                <p class="error-text no-error">Definition cannot be empty.</p>
             </div>
             
             <div class="form-group form-bottom">
+                <p id="duplicate-error-message" class="error-text no-error">This term already has this definition</p>
                 <button type="submit">Submit</button>
             </div>
         </form>
