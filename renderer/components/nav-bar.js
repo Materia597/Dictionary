@@ -97,7 +97,7 @@ class NavBar extends HTMLElement {
         
             <nav>
                 <section class="nav-left">
-                    <p class="nav-text">Dictionary</p>
+                    <p class="nav-text dictionary-home">Dictionary</p>
                 </section>
                 <section class="nav-center">
                     <div class="search">
@@ -106,7 +106,7 @@ class NavBar extends HTMLElement {
                     </div>
                 </section>
                 <section class="nav-right">
-                    <img src="../../assets/addLarge.svg" alt="add" class="icon add-icon">
+                    <img src="../../assets/addLarge.svg" alt="add" class="icon add-icon add-entry">
                 </section>
             </nav>
         `
@@ -114,12 +114,22 @@ class NavBar extends HTMLElement {
 
     connectedCallback() {
         const searchInput = this.shadowRoot.querySelector('.search-input')
+        const addEntry = this.shadowRoot.querySelector('.add-entry')
+        const dictionaryText = this.shadowRoot.querySelector('.dictionary-home')
 
         searchInput.addEventListener('keydown', (e) => {
 
             if (e.key !== 'Enter') return;
 
             // window.versions.ping().then(response => console.log(response))
+        })
+
+        addEntry.addEventListener('click', () => {
+            window.location = '../newEntry/newEntry.html'
+        })
+
+        dictionaryText.addEventListener('click', () => {
+            window.location = '../home/home.html'
         })
     }
 }

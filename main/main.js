@@ -10,7 +10,9 @@ require('./ipc/tagIPC')
 require('./ipc/entryIPC')
 
 
-const homePath = '../renderer/pages/home/home.html'
+// const homePath = '../renderer/pages/home/home.html'
+const homePath = '../renderer/pages/newEntry/newEntry.html'
+
 
 const createWindow = () => {
     const win = new BrowserWindow({
