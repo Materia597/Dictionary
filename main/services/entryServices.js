@@ -10,15 +10,14 @@ const relationshipRepo = require('../../database/repositories/relationshipReposi
  * @param {Record<string, SQLOutputValues>[]} tags 
  * @returns 
  */
-function transformEntry(entryRecord, tags) {
+function transformEntry(entryRecord) {
     return {
         id: entryRecord?.id,
         term: entryRecord?.term,
         definition: entryRecord?.definition,
-        tags: tags
+        tags: relationshipRepo.getTagsForEntry(entryRecord?.id)
     }
 }
-
 
 /**
  * 
@@ -28,9 +27,8 @@ function transformEntry(entryRecord, tags) {
  */
 const getEntry = (term, definition) => {
     const entryInfo = entryRepo.getEntry(term, definition);
-    const entryTags = relationshipRepo.getTagsForEntry(entryInfo.id);
 
-    return transformEntry(entryInfo, entryTags)
+    return transformEntry(entryInfo)
 }
 
 /**
@@ -144,7 +142,7 @@ module.exports.deleteEntry = deleteEntry;
 module.exports.editEntryFromId = editEntryFromId;
 module.exports.editEntryFromFields = editEntryFromFields;
 module.exports.recentEntries = recentEntries;
-
-// TODO: add the following functionality when entry_tags has been sorted
 module.exports.addTagToEntry = addTagToEntry
 module.exports.removeTagFromEntry = removeTagFromEntry
+
+module.exports.transformEntry = transformEntry

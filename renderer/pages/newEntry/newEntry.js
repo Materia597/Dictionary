@@ -1,16 +1,15 @@
 const newEntryForm = document.getElementById('new-definition')
 const entryTermField = document.getElementById('entry-term')
 const entryDefinitionField = document.getElementById('entry-content')
-
 const duplicateErrorMessage = document.getElementById('duplicate-error-message')
+
+
 
 newEntryForm.addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const formData = new FormData(newEntryForm)
     const data = Object.fromEntries(formData.entries())
-
-    console.log(data)
 
     const response = await window.entries.createEntry(data.term, data.definition)
 

@@ -13,6 +13,8 @@ const editEntryFromValuesStatement = db.prepare(`UPDATE entries SET term = :newT
 
 const recentEntriesStatement = db.prepare(`SELECT * FROM entries ORDER BY id DESC LIMIT 10`)
 
+const searchEntriesStatement = db.prepare(`SELECT * FROM entries WHERE term LIKE :term LIMIT 30`)
+
 /**
  * 
  * @param {string} term 
@@ -109,6 +111,16 @@ const recentEntries = () => {
     return recentEntriesStatement.all()
 }
 
+/**
+ * 
+ * @param {string} term 
+ */
+const searchEntries = (term) => {
+    return searchEntriesStatement.all({term: term})
+}
+
+
+
 module.exports.entryExists = entryExists;
 module.exports.getEntry = getEntry;
 module.exports.createEntry = createEntry;
@@ -117,3 +129,4 @@ module.exports.deleteEntry = deleteEntry;
 module.exports.editEntryFromId = editEntryFromId;
 module.exports.editEntryFromFields = editEntryFromFields;
 module.exports.recentEntries = recentEntries;
+module.exports.searchEntries = searchEntries

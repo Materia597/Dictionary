@@ -14,7 +14,7 @@ const getTagsForEntryStatement = db.prepare(`
 `);
 
 const getEntriesWithTagStatement = db.prepare(`
-    SELECT entries.* FROM entries
+    SELECT entries.*,tags.name FROM entries
     JOIN entry_tags
         ON entries.id = entry_tags.entry_id
     JOIN tags
@@ -37,6 +37,11 @@ const deleteRelationshipsWithTagStatement = db.prepare(`
 const deleteRelationshipsWithEntryStatement = db.prepare(`
     DELETE FROM entry_tags
     WHERE entry_id = :entryId
+`)
+
+
+const searchEntriesWithTagsStatement = db.prepare(`
+    
 `)
 
 

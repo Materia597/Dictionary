@@ -26,3 +26,7 @@ contextBridge.exposeInMainWorld('entries', {
     addTagToEntry: (entryId, tagId) => ipcRenderer.invoke('add-tag-to-entry', entryId, tagId),
     removeTagFromEntry: (entryId, tagId) => ipcRenderer.invoke('remove-tag-from-entry', entryId, tagId),
 })
+
+contextBridge.exposeInMainWorld('search', {
+    entriesWithTag: (tagName) => ipcRenderer.invoke('entries-with-tag', tagName)
+})

@@ -8,10 +8,10 @@ require('../database/db')
 
 require('./ipc/tagIPC')
 require('./ipc/entryIPC')
+require('./ipc/searchIPC')
 
 
-// const homePath = '../renderer/pages/home/home.html'
-const homePath = '../renderer/pages/newEntry/newEntry.html'
+const homePath = '../renderer/pages/home/home.html'
 
 
 const createWindow = () => {
