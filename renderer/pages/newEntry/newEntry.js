@@ -17,6 +17,7 @@ newEntryForm.addEventListener('submit', async (e) => {
         duplicateErrorMessage.classList.remove('no-error')
     } else {
         duplicateErrorMessage.classList.add('no-error')
+        window.location = `../entry/entry.html?term=${data.term}`
     }
 })
 
