@@ -13,7 +13,7 @@ const editEntryFromValuesStatement = db.prepare(`UPDATE entries SET term = :newT
 
 const recentEntriesStatement = db.prepare(`SELECT * FROM entries ORDER BY id DESC LIMIT 10`)
 
-const searchEntriesStatement = db.prepare(`SELECT * FROM entries WHERE term LIKE :term LIMIT 30`)
+const searchEntriesStatement = db.prepare(`SELECT id,definition FROM entries WHERE term LIKE :term LIMIT 30`)
 
 /**
  * 

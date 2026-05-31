@@ -88,6 +88,18 @@ input {
     cursor: pointer;
 }
 
+.icon-medium {
+    width: var(--margin-m);
+    height: var(--margin-m);
+    cursor: pointer;
+}
+
+.icon-small {
+    width: var(--margin-s);
+    height: var(--margin-s);
+    cursor: pointer;
+}
+
 .def-tag {
     font-size: var(--margin-xs);
     color: var(--text-muted);
@@ -99,7 +111,19 @@ input {
     transition: background 0.25s, color 0.25s;
 }
 
+.def-tag::after {
+    content: "X";
+    padding-left: var(--margin-xxs);
+    margin-left: var(--margin-xxs);
+    border-left: 1px solid var(--text);
+    display: none;
+}
+
 .def-tag:hover {
     background: var(--primary);
     color: var(--bg);
+}
+
+.def-tag:hover .def-tag::after{
+    display: block;
 }

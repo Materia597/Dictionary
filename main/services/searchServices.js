@@ -12,7 +12,7 @@ const { transformEntry } = require('./entryServices')
  */
 const searchEntries = (searchTerm) => {
     return entryRepo.searchEntries(searchTerm)
-                    .map(entry => transformEntry(entry))
+                    .map(entry => {return {id: entry.id, definition: entry.definition}})
 }
 
 /**

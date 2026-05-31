@@ -28,5 +28,6 @@ contextBridge.exposeInMainWorld('entries', {
 })
 
 contextBridge.exposeInMainWorld('search', {
-    entriesWithTag: (tagName) => ipcRenderer.invoke('entries-with-tag', tagName)
+    entriesWithTag: (tagName) => ipcRenderer.invoke('entries-with-tag', tagName),
+    searchEntries: (searchTerm) => ipcRenderer.invoke('search-entries', searchTerm)
 })

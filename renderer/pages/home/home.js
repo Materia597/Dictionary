@@ -12,8 +12,8 @@ const makePreview = (entryId, term, definition, tags) => {
 
     return `
         <article class="dict-entry-preview" data-entryId="${entryId}">
-            <h2 class="term-heading">${term}</h2>
-            <span class="definition-tags">
+            <h2 class="term-heading" data-term="${term}">${term}</h2>
+            <span class="def-tags">
                 ${tagText}
             </span>
             <p class="definition-preview">${definition}</p>
@@ -29,6 +29,13 @@ const populateRecent = async () => {
     results.forEach(r => {
         definitionsPreview.insertAdjacentHTML('beforeend', makePreview(r.id, r.term, r.definition, r.tags))
     }) 
+
+    document.querySelectorAll('.term-heading').forEach(heading => {
+        console.log(heading.dataset.term)
+        heading.addEventListener('click', () => {
+            window.location = `../entry/entry.html?term=${heading.dataset.term}`
+        })
+    })
 }
 
 populateRecent()
