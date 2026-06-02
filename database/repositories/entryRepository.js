@@ -15,6 +15,30 @@ const recentEntriesStatement = db.prepare(`SELECT * FROM entries ORDER BY id DES
 
 const searchEntriesStatement = db.prepare(`SELECT id,definition FROM entries WHERE term LIKE :term LIMIT 30`)
 
+const entriesWithTermStatement = db.prepare(`
+    SELECT 
+        entries.id, entries.term, entries.definition,
+        COALESCE(
+            json_group_array(
+                CASE
+                    WHEN tags.id IS NOT NULL THEN
+                        json_object(
+                            'id', tags.id,
+                            'name', tags.name
+                        )
+                END
+            ),
+            '[]'
+        ) AS tags
+    FROM entries
+    LEFT JOIN entry_tags
+        ON entries.id = entry_tags.entry_id
+    LEFT JOIN tags
+        ON entry_tags.tag_id = tags.id
+    WHERE entries.term = :term
+    GROUP BY entries.id, entries.term, entries.definition
+`)
+
 /**
  * 
  * @param {string} term 
@@ -120,6 +144,17 @@ const searchEntries = (term) => {
 }
 
 
+/**
+ * 
+ * @param {string} term 
+ */
+const entriesWithTerm = (term) => {
+    const lowerTerm = term.toLowerCase().trim()
+
+    return entriesWithTermStatement.all({term: lowerTerm})
+}
+
+
 
 module.exports.entryExists = entryExists;
 module.exports.getEntry = getEntry;
@@ -130,3 +165,4 @@ module.exports.editEntryFromId = editEntryFromId;
 module.exports.editEntryFromFields = editEntryFromFields;
 module.exports.recentEntries = recentEntries;
 module.exports.searchEntries = searchEntries
+module.exports.entriesWithTerm = entriesWithTerm

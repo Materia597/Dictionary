@@ -8,3 +8,7 @@ ipcMain.handle('entries-with-tag', (_, tagName) => {
 ipcMain.handle('search-entries', (_, term) => {
     return searchServices.searchEntries(term);
 })
+
+ipcMain.handle('entries-with-term', (_, term) => {
+    return searchServices.entriesWithTerm(term)
+})

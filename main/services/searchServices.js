@@ -23,5 +23,20 @@ const getEntriesWithTag = (tagName) => {
     return relRepo.getEntriesWithTag(tagName)
 }
 
+/**
+ * 
+ * @param {string} term 
+ */
+const entriesWithTerm = async (term) => {
+    let response = await entryRepo.entriesWithTerm(term)
+    response.forEach(entry => {
+        entry.tags = JSON.parse(entry.tags)
+        if (!entry.tags[0]) entry.tags = []
+    })
+    
+    return response
+}
+
 module.exports.searchEntries = searchEntries
 module.exports.getEntriesWithTag = getEntriesWithTag
+module.exports.entriesWithTerm = entriesWithTerm

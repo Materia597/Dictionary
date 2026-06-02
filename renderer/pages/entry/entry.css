@@ -30,7 +30,7 @@
 #definitions #term-header #term-content {
     display: block;
     /* border: 1px blue solid; */
-    margin: 0;
+    margin: var(--margin-xxs) 0;
 }
 
 #definitions #term-header #term-actions {
@@ -52,6 +52,14 @@
     /* border: 1px purple solid; */
 }
 
+.tag-bar {
+    display: flex;
+    flex-direction: row;
+    background: var(--bg);
+    padding: var(--margin-xxs) var(--margin-xs);
+    border-radius: var(--margin-s);
+}
+
 #definitions #term-definitions {
     display: flex;
     flex-direction: column;
@@ -62,6 +70,10 @@
 }
 
 #term-definitions .term-def {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--margin-s);
     background: var(--bg-light);
     color: var(--text);
     border-radius: var(--margin-m);
