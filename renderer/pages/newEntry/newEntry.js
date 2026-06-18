@@ -3,13 +3,23 @@ const entryTermField = document.getElementById('entry-term')
 const entryDefinitionField = document.getElementById('entry-content')
 const duplicateErrorMessage = document.getElementById('duplicate-error-message')
 
-
+let allowNew = false
 
 newEntryForm.addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const formData = new FormData(newEntryForm)
-    const data = Object.fromEntries(formData.entries())
+    let data = Object.fromEntries(formData.entries())
+    
+    data.tags = []
+    document.querySelector('#entry-tags').querySelectorAll('.def-tag').forEach(tag => {
+        data.tags.push(tag.innerHTML)
+    })
+
+    if (!allowNew) {
+        console.log(data)
+        return;
+    }
 
     const response = await window.entries.createEntry(data.term, data.definition)
 

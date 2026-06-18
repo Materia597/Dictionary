@@ -17,6 +17,18 @@ const recentTagsStatement = db.prepare(`
     SELECT * FROM tags ORDER BY id DESC LIMIT 10    
 `)
 
+const doTagsExistStatement = db.prepare(`
+    WITH requested_tags(name) AS (
+        SELECT value
+        FROM json_each(:values)
+    )
+    SELECT rt.name
+    FROM requested_tags rt
+    LEFT JOIN tags t
+        ON t.name = rt.name
+    WHERE t.id IS NULL
+`)
+
 /**
  * Creates a new tag in the tags database.
  * 
@@ -48,6 +60,21 @@ const deleteTag = (tagName) => {
 }
 
 /**
+ * Checks if a list of tags exists inside of the database,
+ * if any do not then they are returned in a list
+ * 
+ * @param {string[]} tags 
+ */
+const doTagsExist = (tags) => {
+    
+    let input = `["${tags.map(i => i.toLowerCase().trim()).join('", "')}"]`
+
+    return doTagsExistStatement.all({values: input})
+
+}
+
+
+/**
  * Gets the 10 most recent tags from the tag database
  * as an array.
  * 
@@ -61,3 +88,4 @@ module.exports.createTag = createTag;
 module.exports.getTag = getTag;
 module.exports.deleteTag = deleteTag;
 module.exports.recentTags = recentTags;
+module.exports.doTagsExist = doTagsExist;

@@ -20,3 +20,7 @@ ipcMain.handle('delete-tag', (_, tagName) => {
 ipcMain.handle('recent-tags', () => {
     return tagServices.recentTags();
 })
+
+ipcMain.handle('do-tags-exist', (_, tags) => {
+    return tagServices.doTagsExist(tags)
+})
