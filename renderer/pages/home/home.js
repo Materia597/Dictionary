@@ -22,7 +22,6 @@ const makePreview = (entryId, term, definition, tags) => {
 }
 
 
-
 const populateRecent = async () => {
     const results = await window.entries.recentEntries()
     
@@ -31,7 +30,6 @@ const populateRecent = async () => {
     }) 
 
     document.querySelectorAll('.term-heading').forEach(heading => {
-        console.log(heading.dataset.term)
         heading.addEventListener('click', () => {
             window.location = `../entry/entry.html?term=${heading.dataset.term}`
         })
